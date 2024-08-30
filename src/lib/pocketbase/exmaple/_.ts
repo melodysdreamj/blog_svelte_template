@@ -2002,10 +2002,10 @@ export class Example {
 
 export class ExamplePocketBaseCollection {
 
-    static _ready = false;
+    // static _ready = false;
 
     static async getDb(email: string, password: string,pocketHostAddress: string) {
-        if (ExamplePocketBaseCollection._ready) return;
+        // if (ExamplePocketBaseCollection._ready) return;
         // 어드민 로그인 (아이디와 비밀번호 설정 필요)
 
         const pb = new PocketBase(pocketHostAddress); // ex) 'https://june.pockethost.io/'
@@ -2014,7 +2014,7 @@ export class ExamplePocketBaseCollection {
 
         // email,
         await pb.admins.authWithPassword(email,password);
-        ExamplePocketBaseCollection._ready = true;
+        // ExamplePocketBaseCollection._ready = true;
 
         return pb;
 

@@ -4,16 +4,16 @@ import path from "path";
 import PocketBase from 'pocketbase';
 // PocketBase 클라이언트 초기화
 
-export class New {
+export class Fruit {
 
     constructor() {
-        this.docId = New.randomString(10);
+        this.docId = Fruit.randomString(10);
     }
 
-    // s000: string = "";
-    // s001: string = "";
-    // s002: string = "";
-    // s003: string = "";
+    definition: string = "";
+    history: string = "";
+    food: string = "";
+    imageUrl: string = "";
     // s004: string = "";
     // s005: string = "";
     // s006: string = "";
@@ -404,10 +404,10 @@ export class New {
 
     toDataString(): string {
         return btoa(Array.from(new TextEncoder().encode(new URLSearchParams({
-            // s000: this.s000,
-            // s001: this.s001,
-            // s002: this.s002,
-            // s003: this.s003,
+            definition: this.definition,
+            history: this.history,
+            food: this.food,
+            imageUrl: this.imageUrl,
             // s004: this.s004,
             // s005: this.s005,
             // s006: this.s006,
@@ -797,15 +797,15 @@ export class New {
         }).toString())).map(byte => String.fromCharCode(byte)).join(""));
     }
 
-    static fromDataString(dataString: string): New {
+    static fromDataString(dataString: string): Fruit {
         const queryParams = Object.fromEntries(new URLSearchParams(atob(dataString)));
 
-        const object = new New();
+        const object = new Fruit();
 
-        // object.s000 = queryParams["s000"] || "";
-        // object.s001 = queryParams["s001"] || "";
-        // object.s002 = queryParams["s002"] || "";
-        // object.s003 = queryParams["s003"] || "";
+        object.definition = queryParams["definition"] || "";
+        object.history = queryParams["history"] || "";
+        object.food = queryParams["food"] || "";
+        object.imageUrl = queryParams["imageUrl"] || "";
         // object.s004 = queryParams["s004"] || "";
         // object.s005 = queryParams["s005"] || "";
         // object.s006 = queryParams["s006"] || "";
@@ -1198,10 +1198,10 @@ export class New {
 
     toMap(): object {
         return {
-            // s000: this.s000,
-            // s001: this.s001,
-            // s002: this.s002,
-            // s003: this.s003,
+            definition: this.definition,
+            history: this.history,
+            food: this.food,
+            imageUrl: this.imageUrl,
             // s004: this.s004,
             // s005: this.s005,
             // s006: this.s006,
@@ -1591,13 +1591,13 @@ export class New {
         };
     }
 
-    static fromMap(queryParams: any): New {
-        const object = new New();
+    static fromMap(queryParams: any): Fruit {
+        const object = new Fruit();
 
-        // object.s000 = queryParams.s000 || '';
-        // object.s001 = queryParams.s001 || '';
-        // object.s002 = queryParams.s002 || '';
-        // object.s003 = queryParams.s003 || '';
+        object.definition = queryParams.definition || '';
+        object.history = queryParams.history || '';
+        object.food = queryParams.food || '';
+        object.imageUrl = queryParams.imageUrl || '';
         // object.s004 = queryParams.s004 || '';
         // object.s005 = queryParams.s005 || '';
         // object.s006 = queryParams.s006 || '';
@@ -1998,32 +1998,32 @@ export class New {
     }
 }
 
-export class NewPocketBaseCollection {
+export class FruitPocketBaseCollection {
 
 
     static async getDb(email: string, password: string,pocketHostAddress: string) {
-        // if (NewPocketBaseCollection._ready) return;
+        // if (FruitPocketBaseCollection._ready) return;
         // 어드민 로그인 (아이디와 비밀번호 설정 필요)
 
-        let pb:any = new PocketBase(pocketHostAddress); // go to https://app.pockethost.io/
+        const pb = new PocketBase(pocketHostAddress); // go to https://app.pockethost.io/
 
 
         // email,
         await pb.admins.authWithPassword(email, password); // 어드민 로그인
-        // NewPocketBaseCollection._ready = true;
+        // FruitPocketBaseCollection._ready = true;
 
         return pb;
 
     }
 
-    static async get(docId: string,email: string, password: string,pocketHostAddress: string): Promise<New | null> {
+    static async get(docId: string,email: string, password: string,pocketHostAddress: string): Promise<Fruit | null> {
 
-        let pb:any = await NewPocketBaseCollection.getDb(email, password,pocketHostAddress);
+        let pb:any = await FruitPocketBaseCollection.getDb(email, password,pocketHostAddress);
 
         try {
-            const xs = await pb.collection('New').getFirstListItem(`docId="${docId}"`);
+            const xs = await pb.collection('Fruit').getFirstListItem(`docId="${docId}"`);
 
-            return New.fromMap(xs);
+            return Fruit.fromMap(xs);
 
 
         } catch (e) {
@@ -2034,10 +2034,10 @@ export class NewPocketBaseCollection {
 
     static async getRow(docId: string,email: string, password: string,pocketHostAddress: string): Promise<any> {
 
-        let pb = await NewPocketBaseCollection.getDb(email, password,pocketHostAddress);
+        let pb:any = await FruitPocketBaseCollection.getDb(email, password,pocketHostAddress);
 
         try {
-            return await pb.collection('New').getFirstListItem(`docId="${docId}"`);
+            return await pb.collection('Fruit').getFirstListItem(`docId="${docId}"`);
 
         } catch (e) {
             // console.log(e);
