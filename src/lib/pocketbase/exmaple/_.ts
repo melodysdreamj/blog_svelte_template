@@ -1,16 +1,18 @@
 import * as fs from "fs";
 import path from "path";
+import {TestEnumTest, TestEnumTestHelper} from "$lib/pocketbase/exmaple/test_enum";
+import {Sub} from "$lib/pocketbase/exmaple/sub";
 
-const PocketBase = require('pocketbase').default;
+import PocketBase from 'pocketbase';
 // PocketBase 클라이언트 초기화
 
-export class New {
+export class Example {
 
     constructor() {
-        this.docId = New.randomString(10);
+        this.docId = Example.randomString(10);
     }
 
-    // s000: string = "";
+    s000: string = "";
     // s001: string = "";
     // s002: string = "";
     // s003: string = "";
@@ -110,7 +112,7 @@ export class New {
     // s097: string = "";
     // s098: string = "";
     // s099: string = "";
-    // i000: number = 0;
+    i000: number = 0;
     // i001: number = 0;
     // i002: number = 0;
     // i003: number = 0;
@@ -210,7 +212,7 @@ export class New {
     // i097: number = 0;
     // i098: number = 0;
     // i099: number = 0;
-    // b000: boolean = false;
+    b000: boolean = false;
     // b001: boolean = false;
     // b002: boolean = false;
     // b003: boolean = false;
@@ -241,7 +243,7 @@ export class New {
     // b028: boolean = false;
     // b029: boolean = false;
     // b030: boolean = false;
-    // r000: number = 0.0;
+    r000: number = 0.0;
     // r001: number = 0.0;
     // r002: number = 0.0;
     // r003: number = 0.0;
@@ -272,7 +274,7 @@ export class New {
     // r028: number = 0.0;
     // r029: number = 0.0;
     // r030: number = 0.0;
-    // t000: Date = new Date(0);
+    t000: Date = new Date(0);
     // t001: Date = new Date(0);
     // t002: Date = new Date(0);
     // t003: Date = new Date(0);
@@ -293,7 +295,7 @@ export class New {
     // t018: Date = new Date(0);
     // t019: Date = new Date(0);
     // t020: Date = new Date(0);
-    // l000: string[] = [];
+    l000: string[] = [];
     // l001: string[] = [];
     // l002: string[] = [];
     // l003: string[] = [];
@@ -314,7 +316,7 @@ export class New {
     // l018: string[] = [];
     // l019: string[] = [];
     // l020: string[] = [];
-    // m000: { [key: string]: any } = {};
+    m000: { [key: string]: any } = {};
     // m001: { [key: string]: any } = {};
     // m002: { [key: string]: any } = {};
     // m003: { [key: string]: any } = {};
@@ -335,7 +337,7 @@ export class New {
     // m018: { [key: string]: any } = {};
     // m019: { [key: string]: any } = {};
     // m020: { [key: string]: any } = {};
-    // c000: OtherModel = new OtherModel();
+    c000: Sub = new Sub();
     // c001: OtherModel = new OtherModel();
     // c002: OtherModel = new OtherModel();
     // c003: OtherModel = new OtherModel();
@@ -356,7 +358,7 @@ export class New {
     // c018: OtherModel = new OtherModel();
     // c019: OtherModel = new OtherModel();
     // c020: OtherModel = new OtherModel();
-    // j000 : OtherModel[] = [];
+    j000 : Sub[] = [];
     // j001 : OtherModel[] = [];
     // j002 : OtherModel[] = [];
     // j003 : OtherModel[] = [];
@@ -377,34 +379,34 @@ export class New {
     // j018 : OtherModel[] = [];
     // j019 : OtherModel[] = [];
     // j020 : OtherModel[] = [];
-    // e000: SomeEnum = SomeEnum.notSelected;
-    // e001: SomeEnum = SomeEnum.notSelected;
-    // e002: SomeEnum = SomeEnum.notSelected;
-    // e003: SomeEnum = SomeEnum.notSelected;
-    // e004: SomeEnum = SomeEnum.notSelected;
-    // e005: SomeEnum = SomeEnum.notSelected;
-    // e006: SomeEnum = SomeEnum.notSelected;
-    // e007: SomeEnum = SomeEnum.notSelected;
-    // e008: SomeEnum = SomeEnum.notSelected;
-    // e009: SomeEnum = SomeEnum.notSelected;
-    // e010: SomeEnum = SomeEnum.notSelected;
-    // e011: SomeEnum = SomeEnum.notSelected;
-    // e012: SomeEnum = SomeEnum.notSelected;
-    // e013: SomeEnum = SomeEnum.notSelected;
-    // e014: SomeEnum = SomeEnum.notSelected;
-    // e015: SomeEnum = SomeEnum.notSelected;
-    // e016: SomeEnum = SomeEnum.notSelected;
-    // e017: SomeEnum = SomeEnum.notSelected;
-    // e018: SomeEnum = SomeEnum.notSelected;
-    // e019: SomeEnum = SomeEnum.notSelected;
-    // e020: SomeEnum = SomeEnum.notSelected;
+    e000: TestEnumTest = TestEnumTest.notSelected;
+    // e001: TestEnumTest = TestEnumTest.notSelected;
+    // e002: TestEnumTest = TestEnumTest.notSelected;
+    // e003: TestEnumTest = TestEnumTest.notSelected;
+    // e004: TestEnumTest = TestEnumTest.notSelected;
+    // e005: TestEnumTest = TestEnumTest.notSelected;
+    // e006: TestEnumTest = TestEnumTest.notSelected;
+    // e007: TestEnumTest = TestEnumTest.notSelected;
+    // e008: TestEnumTest = TestEnumTest.notSelected;
+    // e009: TestEnumTest = TestEnumTest.notSelected;
+    // e010: TestEnumTest = TestEnumTest.notSelected;
+    // e011: TestEnumTest = TestEnumTest.notSelected;
+    // e012: TestEnumTest = TestEnumTest.notSelected;
+    // e013: TestEnumTest = TestEnumTest.notSelected;
+    // e014: TestEnumTest = TestEnumTest.notSelected;
+    // e015: TestEnumTest = TestEnumTest.notSelected;
+    // e016: TestEnumTest = TestEnumTest.notSelected;
+    // e017: TestEnumTest = TestEnumTest.notSelected;
+    // e018: TestEnumTest = TestEnumTest.notSelected;
+    // e019: TestEnumTest = TestEnumTest.notSelected;
+    // e020: TestEnumTest = TestEnumTest.notSelected;
     fileName: string = "";
 
     docId: string = "";
 
     toDataString(): string {
         return btoa(Array.from(new TextEncoder().encode(new URLSearchParams({
-            // s000: this.s000,
+            s000: this.s000,
             // s001: this.s001,
             // s002: this.s002,
             // s003: this.s003,
@@ -504,7 +506,7 @@ export class New {
             // s097: this.s097,
             // s098: this.s098,
             // s099: this.s099,
-            // i000: this.i000.toString(),
+            i000: this.i000.toString(),
             // i001: this.i001.toString(),
             // i002: this.i002.toString(),
             // i003: this.i003.toString(),
@@ -604,7 +606,7 @@ export class New {
             // i097: this.i097.toString(),
             // i098: this.i098.toString(),
             // i099: this.i099.toString(),
-            // b000: this.b000.toString(),
+            b000: this.b000.toString(),
             // b001: this.b001.toString(),
             // b002: this.b002.toString(),
             // b003: this.b003.toString(),
@@ -635,7 +637,7 @@ export class New {
             // b028: this.b028.toString(),
             // b029: this.b029.toString(),
             // b030: this.b030.toString(),
-            // r000: this.r000.toString(),
+            r000: this.r000.toString(),
             // r001: this.r001.toString(),
             // r002: this.r002.toString(),
             // r003: this.r003.toString(),
@@ -666,7 +668,7 @@ export class New {
             // r028: this.r028.toString(),
             // r029: this.r029.toString(),
             // r030: this.r030.toString(),
-            // t000: this.t000.getTime().toString(),
+            t000: this.t000.getTime().toString(),
             // t001: this.t001.getTime().toString(),
             // t002: this.t002.getTime().toString(),
             // t003: this.t003.getTime().toString(),
@@ -687,7 +689,7 @@ export class New {
             // t018: this.t018.getTime().toString(),
             // t019: this.t019.getTime().toString(),
             // t020: this.t020.getTime().toString(),
-            // l000: JSON.stringify(this.l000),
+            l000: JSON.stringify(this.l000),
             // l001: JSON.stringify(this.l001),
             // l002: JSON.stringify(this.l002),
             // l003: JSON.stringify(this.l003),
@@ -708,7 +710,7 @@ export class New {
             // l018: JSON.stringify(this.l018),
             // l019: JSON.stringify(this.l019),
             // l020: JSON.stringify(this.l020),
-            // m000: JSON.stringify(this.m000),
+            m000: JSON.stringify(this.m000),
             // m001: JSON.stringify(this.m001),
             // m002: JSON.stringify(this.m002),
             // m003: JSON.stringify(this.m003),
@@ -729,7 +731,7 @@ export class New {
             // m018: JSON.stringify(this.m018),
             // m019: JSON.stringify(this.m019),
             // m020: JSON.stringify(this.m020),
-            // c000: this.c000.toDataString(),
+            c000: this.c000.toDataString(),
             // c001: this.c001.toDataString(),
             // c002: this.c002.toDataString(),
             // c003: this.c003.toDataString(),
@@ -750,7 +752,7 @@ export class New {
             // c018: this.c018.toDataString(),
             // c019: this.c019.toDataString(),
             // c020: this.c020.toDataString(),
-            // j000: JSON.stringify(this.j000.map((model: OtherModel) => model.toDataString())),
+            j000: JSON.stringify(this.j000.map((model: Sub) => model.toDataString())),
             // j001: JSON.stringify(this.j001.map((model: OtherModel) => model.toDataString())),
             // j002: JSON.stringify(this.j002.map((model: OtherModel) => model.toDataString())),
             // j003: JSON.stringify(this.j003.map((model: OtherModel) => model.toDataString())),
@@ -771,7 +773,7 @@ export class New {
             // j018: JSON.stringify(this.j018.map((model: OtherModel) => model.toDataString())),
             // j019: JSON.stringify(this.j019.map((model: OtherModel) => model.toDataString())),
             // j020: JSON.stringify(this.j020.map((model: OtherModel) => model.toDataString())),
-            // e000: this.e000,
+            e000: this.e000,
             // e001: this.e001,
             // e002: this.e002,
             // e003: this.e003,
@@ -797,12 +799,12 @@ export class New {
         }).toString())).map(byte => String.fromCharCode(byte)).join(""));
     }
 
-    static fromDataString(dataString: string): New {
+    static fromDataString(dataString: string): Example {
         const queryParams = Object.fromEntries(new URLSearchParams(atob(dataString)));
 
-        const object = new New();
+        const object = new Example();
 
-        // object.s000 = queryParams["s000"] || "";
+        object.s000 = queryParams["s000"] || "";
         // object.s001 = queryParams["s001"] || "";
         // object.s002 = queryParams["s002"] || "";
         // object.s003 = queryParams["s003"] || "";
@@ -902,7 +904,7 @@ export class New {
         // object.s097 = queryParams["s097"] || "";
         // object.s098 = queryParams["s098"] || "";
         // object.s099 = queryParams["s099"] || "";
-        // object.i000 = parseInt(queryParams["i000"] || "0", 10);
+        object.i000 = parseInt(queryParams["i000"] || "0", 10);
         // object.i001 = parseInt(queryParams["i001"] || "0", 10);
         // object.i002 = parseInt(queryParams["i002"] || "0", 10);
         // object.i003 = parseInt(queryParams["i003"] || "0", 10);
@@ -1002,7 +1004,7 @@ export class New {
         // object.i097 = parseInt(queryParams["i097"] || "0", 10);
         // object.i098 = parseInt(queryParams["i098"] || "0", 10);
         // object.i099 = parseInt(queryParams["i099"] || "0", 10);
-        // object.b000 = queryParams["b000"] === "true";
+        object.b000 = queryParams["b000"] === "true";
         // object.b001 = queryParams["b001"] === "true";
         // object.b002 = queryParams["b002"] === "true";
         // object.b003 = queryParams["b003"] === "true";
@@ -1033,7 +1035,7 @@ export class New {
         // object.b028 = queryParams["b028"] === "true";
         // object.b029 = queryParams["b029"] === "true";
         // object.b030 = queryParams["b030"] === "true";
-        // object.r000 = parseFloat(queryParams["r000"] || "0");
+        object.r000 = parseFloat(queryParams["r000"] || "0");
         // object.r001 = parseFloat(queryParams["r001"] || "0");
         // object.r002 = parseFloat(queryParams["r002"] || "0");
         // object.r003 = parseFloat(queryParams["r003"] || "0");
@@ -1064,7 +1066,7 @@ export class New {
         // object.r028 = parseFloat(queryParams["r028"] || "0");
         // object.r029 = parseFloat(queryParams["r029"] || "0");
         // object.r030 = parseFloat(queryParams["r030"] || "0");
-        // object.t000 = new Date(parseInt(queryParams["t000"] || "0", 10));
+        object.t000 = new Date(parseInt(queryParams["t000"] || "0", 10));
         // object.t001 = new Date(parseInt(queryParams["t001"] || "0", 10));
         // object.t002 = new Date(parseInt(queryParams["t002"] || "0", 10));
         // object.t003 = new Date(parseInt(queryParams["t003"] || "0", 10));
@@ -1085,7 +1087,7 @@ export class New {
         // object.t018 = new Date(parseInt(queryParams["t018"] || "0", 10));
         // object.t019 = new Date(parseInt(queryParams["t019"] || "0", 10));
         // object.t020 = new Date(parseInt(queryParams["t020"] || "0", 10));
-        // object.l000 = JSON.parse(queryParams["l000"] || "[]");
+        object.l000 = JSON.parse(queryParams["l000"] || "[]");
         // object.l001 = JSON.parse(queryParams["l001"] || "[]");
         // object.l002 = JSON.parse(queryParams["l002"] || "[]");
         // object.l003 = JSON.parse(queryParams["l003"] || "[]");
@@ -1106,7 +1108,7 @@ export class New {
         // object.l018 = JSON.parse(queryParams["l018"] || "[]");
         // object.l019 = JSON.parse(queryParams["l019"] || "[]");
         // object.l020 = JSON.parse(queryParams["l020"] || "[]");
-        // object.m000 = JSON.parse(queryParams["m000"] || "{}");
+        object.m000 = JSON.parse(queryParams["m000"] || "{}");
         // object.m001 = JSON.parse(queryParams["m001"] || "{}");
         // object.m002 = JSON.parse(queryParams["m002"] || "{}");
         // object.m003 = JSON.parse(queryParams["m003"] || "{}");
@@ -1127,7 +1129,7 @@ export class New {
         // object.m018 = JSON.parse(queryParams["m018"] || "{}");
         // object.m019 = JSON.parse(queryParams["m019"] || "{}");
         // object.m020 = JSON.parse(queryParams["m020"] || "{}");
-        // object.c000 = OtherModel.fromDataString(queryParams["c000"] || new OtherModel().toDataString());
+        object.c000 = Sub.fromDataString(queryParams["c000"] || new Sub().toDataString());
         // object.c001 = OtherModel.fromDataString(queryParams["c001"] || new OtherModel().toDataString());
         // object.c002 = OtherModel.fromDataString(queryParams["c002"] || new OtherModel().toDataString());
         // object.c003 = OtherModel.fromDataString(queryParams["c003"] || new OtherModel().toDataString());
@@ -1148,7 +1150,7 @@ export class New {
         // object.c018 = OtherModel.fromDataString(queryParams["c018"] || new OtherModel().toDataString());
         // object.c019 = OtherModel.fromDataString(queryParams["c019"] || new OtherModel().toDataString());
         // object.c020 = OtherModel.fromDataString(queryParams["c020"] || new OtherModel().toDataString());
-        // object.j000 = (JSON.parse(queryParams["j000"] || "[]") || []).map((item: string) => OtherModel.fromDataString(item));
+        object.j000 = (JSON.parse(queryParams["j000"] || "[]") || []).map((item: string) => Sub.fromDataString(item));
         // object.j001 = (JSON.parse(queryParams["j001"] || "[]") || []).map((item: string) => OtherModel.fromDataString(item));
         // object.j002 = (JSON.parse(queryParams["j002"] || "[]") || []).map((item: string) => OtherModel.fromDataString(item));
         // object.j003 = (JSON.parse(queryParams["j003"] || "[]") || []).map((item: string) => OtherModel.fromDataString(item));
@@ -1169,27 +1171,27 @@ export class New {
         // object.j018 = (JSON.parse(queryParams["j018"] || "[]") || []).map((item: string) => OtherModel.fromDataString(item));
         // object.j019 = (JSON.parse(queryParams["j019"] || "[]") || []).map((item: string) => OtherModel.fromDataString(item));
         // object.j020 = (JSON.parse(queryParams["j020"] || "[]") || []).map((item: string) => OtherModel.fromDataString(item));
-        // object.e000 = SomeEnumHelper.fromString(queryParams["e000"] || SomeEnum.notSelected);
-        // object.e001 = SomeEnumHelper.fromString(queryParams["e001"] || SomeEnum.notSelected);
-        // object.e002 = SomeEnumHelper.fromString(queryParams["e002"] || SomeEnum.notSelected);
-        // object.e003 = SomeEnumHelper.fromString(queryParams["e003"] || SomeEnum.notSelected);
-        // object.e004 = SomeEnumHelper.fromString(queryParams["e004"] || SomeEnum.notSelected);
-        // object.e005 = SomeEnumHelper.fromString(queryParams["e005"] || SomeEnum.notSelected);
-        // object.e006 = SomeEnumHelper.fromString(queryParams["e006"] || SomeEnum.notSelected);
-        // object.e007 = SomeEnumHelper.fromString(queryParams["e007"] || SomeEnum.notSelected);
-        // object.e008 = SomeEnumHelper.fromString(queryParams["e008"] || SomeEnum.notSelected);
-        // object.e009 = SomeEnumHelper.fromString(queryParams["e009"] || SomeEnum.notSelected);
-        // object.e010 = SomeEnumHelper.fromString(queryParams["e010"] || SomeEnum.notSelected);
-        // object.e011 = SomeEnumHelper.fromString(queryParams["e011"] || SomeEnum.notSelected);
-        // object.e012 = SomeEnumHelper.fromString(queryParams["e012"] || SomeEnum.notSelected);
-        // object.e013 = SomeEnumHelper.fromString(queryParams["e013"] || SomeEnum.notSelected);
-        // object.e014 = SomeEnumHelper.fromString(queryParams["e014"] || SomeEnum.notSelected);
-        // object.e015 = SomeEnumHelper.fromString(queryParams["e015"] || SomeEnum.notSelected);
-        // object.e016 = SomeEnumHelper.fromString(queryParams["e016"] || SomeEnum.notSelected);
-        // object.e017 = SomeEnumHelper.fromString(queryParams["e017"] || SomeEnum.notSelected);
-        // object.e018 = SomeEnumHelper.fromString(queryParams["e018"] || SomeEnum.notSelected);
-        // object.e019 = SomeEnumHelper.fromString(queryParams["e019"] || SomeEnum.notSelected);
-        // object.e020 = SomeEnumHelper.fromString(queryParams["e020"] || SomeEnum.notSelected);
+        object.e000 = TestEnumTestHelper.fromString(queryParams["e000"] || TestEnumTest.notSelected);
+        // object.e001 = TestEnumTestHelper.fromString(queryParams["e001"] || TestEnumTest.notSelected);
+        // object.e002 = TestEnumTestHelper.fromString(queryParams["e002"] || TestEnumTest.notSelected);
+        // object.e003 = TestEnumTestHelper.fromString(queryParams["e003"] || TestEnumTest.notSelected);
+        // object.e004 = TestEnumTestHelper.fromString(queryParams["e004"] || TestEnumTest.notSelected);
+        // object.e005 = TestEnumTestHelper.fromString(queryParams["e005"] || TestEnumTest.notSelected);
+        // object.e006 = TestEnumTestHelper.fromString(queryParams["e006"] || TestEnumTest.notSelected);
+        // object.e007 = TestEnumTestHelper.fromString(queryParams["e007"] || TestEnumTest.notSelected);
+        // object.e008 = TestEnumTestHelper.fromString(queryParams["e008"] || TestEnumTest.notSelected);
+        // object.e009 = TestEnumTestHelper.fromString(queryParams["e009"] || TestEnumTest.notSelected);
+        // object.e010 = TestEnumTestHelper.fromString(queryParams["e010"] || TestEnumTest.notSelected);
+        // object.e011 = TestEnumTestHelper.fromString(queryParams["e011"] || TestEnumTest.notSelected);
+        // object.e012 = TestEnumTestHelper.fromString(queryParams["e012"] || TestEnumTest.notSelected);
+        // object.e013 = TestEnumTestHelper.fromString(queryParams["e013"] || TestEnumTest.notSelected);
+        // object.e014 = TestEnumTestHelper.fromString(queryParams["e014"] || TestEnumTest.notSelected);
+        // object.e015 = TestEnumTestHelper.fromString(queryParams["e015"] || TestEnumTest.notSelected);
+        // object.e016 = TestEnumTestHelper.fromString(queryParams["e016"] || TestEnumTest.notSelected);
+        // object.e017 = TestEnumTestHelper.fromString(queryParams["e017"] || TestEnumTest.notSelected);
+        // object.e018 = TestEnumTestHelper.fromString(queryParams["e018"] || TestEnumTest.notSelected);
+        // object.e019 = TestEnumTestHelper.fromString(queryParams["e019"] || TestEnumTest.notSelected);
+        // object.e020 = TestEnumTestHelper.fromString(queryParams["e020"] || TestEnumTest.notSelected);
         object.fileName = queryParams["fileName"] || "";
         object.docId = queryParams["docId"] || "";
 
@@ -1198,7 +1200,7 @@ export class New {
 
     toMap(): object {
         return {
-            // s000: this.s000,
+            s000: this.s000,
             // s001: this.s001,
             // s002: this.s002,
             // s003: this.s003,
@@ -1298,7 +1300,7 @@ export class New {
             // s097: this.s097,
             // s098: this.s098,
             // s099: this.s099,
-            // i000: this.i000,
+            i000: this.i000,
             // i001: this.i001,
             // i002: this.i002,
             // i003: this.i003,
@@ -1398,7 +1400,7 @@ export class New {
             // i097: this.i097,
             // i098: this.i098,
             // i099: this.i099,
-            // b000: this.b000 ? 1 : 0,
+            b000: this.b000 ? 1 : 0,
             // b001: this.b001 ? 1 : 0,
             // b002: this.b002 ? 1 : 0,
             // b003: this.b003 ? 1 : 0,
@@ -1429,7 +1431,7 @@ export class New {
             // b028: this.b028 ? 1 : 0,
             // b029: this.b029 ? 1 : 0,
             // b030: this.b030 ? 1 : 0,
-            // r000: this.r000,
+            r000: this.r000,
             // r001: this.r001,
             // r002: this.r002,
             // r003: this.r003,
@@ -1460,7 +1462,7 @@ export class New {
             // r028: this.r028,
             // r029: this.r029,
             // r030: this.r030,
-            // t000: this.t000.getTime(),
+            t000: this.t000.getTime(),
             // t001: this.t001.getTime(),
             // t002: this.t002.getTime(),
             // t003: this.t003.getTime(),
@@ -1481,7 +1483,7 @@ export class New {
             // t018: this.t018.getTime(),
             // t019: this.t019.getTime(),
             // t020: this.t020.getTime(),
-            // l000: JSON.stringify(this.l000),
+            l000: JSON.stringify(this.l000),
             // l001: JSON.stringify(this.l001),
             // l002: JSON.stringify(this.l002),
             // l003: JSON.stringify(this.l003),
@@ -1502,7 +1504,7 @@ export class New {
             // l018: JSON.stringify(this.l018),
             // l019: JSON.stringify(this.l019),
             // l020: JSON.stringify(this.l020),
-            // m000: JSON.stringify(this.m000),
+            m000: JSON.stringify(this.m000),
             // m001: JSON.stringify(this.m001),
             // m002: JSON.stringify(this.m002),
             // m003: JSON.stringify(this.m003),
@@ -1523,7 +1525,7 @@ export class New {
             // m018: JSON.stringify(this.m018),
             // m019: JSON.stringify(this.m019),
             // m020: JSON.stringify(this.m020),
-            // c000: this.c000.toDataString(),
+            c000: this.c000.toDataString(),
             // c001: this.c001.toDataString(),
             // c002: this.c002.toDataString(),
             // c003: this.c003.toDataString(),
@@ -1544,7 +1546,7 @@ export class New {
             // c018: this.c018.toDataString(),
             // c019: this.c019.toDataString(),
             // c020: this.c020.toDataString(),
-            // j000: JSON.stringify(this.j000.map((model: OtherModel) => model.toDataString())),
+            j000: JSON.stringify(this.j000.map((model: Sub) => model.toDataString())),
             // j001: JSON.stringify(this.j001.map((model: OtherModel) => model.toDataString())),
             // j002: JSON.stringify(this.j002.map((model: OtherModel) => model.toDataString())),
             // j003: JSON.stringify(this.j003.map((model: OtherModel) => model.toDataString())),
@@ -1565,7 +1567,7 @@ export class New {
             // j018: JSON.stringify(this.j018.map((model: OtherModel) => model.toDataString())),
             // j019: JSON.stringify(this.j019.map((model: OtherModel) => model.toDataString())),
             // j020: JSON.stringify(this.j020.map((model: OtherModel) => model.toDataString())),
-            // e000: this.e000,
+            e000: this.e000,
             // e001: this.e001,
             // e002: this.e002,
             // e003: this.e003,
@@ -1591,10 +1593,10 @@ export class New {
         };
     }
 
-    static fromMap(queryParams: any): New {
-        const object = new New();
+    static fromMap(queryParams: any): Example {
+        const object = new Example();
 
-        // object.s000 = queryParams.s000 || '';
+        object.s000 = queryParams.s000 || '';
         // object.s001 = queryParams.s001 || '';
         // object.s002 = queryParams.s002 || '';
         // object.s003 = queryParams.s003 || '';
@@ -1694,7 +1696,7 @@ export class New {
         // object.s097 = queryParams.s097 || '';
         // object.s098 = queryParams.s098 || '';
         // object.s099 = queryParams.s099 || '';
-        // object.i000 = Number(queryParams.i000 || 0);
+        object.i000 = Number(queryParams.i000 || 0);
         // object.i001 = Number(queryParams.i001 || 0);
         // object.i002 = Number(queryParams.i002 || 0);
         // object.i003 = Number(queryParams.i003 || 0);
@@ -1794,7 +1796,7 @@ export class New {
         // object.i097 = Number(queryParams.i097 || 0);
         // object.i098 = Number(queryParams.i098 || 0);
         // object.i099 = Number(queryParams.i099 || 0);
-        // object.b000 = queryParams.b000 === 1;
+        object.b000 = queryParams.b000 === 1;
         // object.b001 = queryParams.b001 === 1;
         // object.b002 = queryParams.b002 === 1;
         // object.b003 = queryParams.b003 === 1;
@@ -1825,7 +1827,7 @@ export class New {
         // object.b028 = queryParams.b028 === 1;
         // object.b029 = queryParams.b029 === 1;
         // object.b030 = queryParams.b030 === 1;
-        // object.r000 = queryParams.r000 || 0.0;
+        object.r000 = queryParams.r000 || 0.0;
         // object.r001 = queryParams.r001 || 0.0;
         // object.r002 = queryParams.r002 || 0.0;
         // object.r003 = queryParams.r003 || 0.0;
@@ -1856,7 +1858,7 @@ export class New {
         // object.r028 = queryParams.r028 || 0.0;
         // object.r029 = queryParams.r029 || 0.0;
         // object.r030 = queryParams.r030 || 0.0;
-        // object.t000 = new Date(queryParams.t000 || 0);
+        object.t000 = new Date(queryParams.t000 || 0);
         // object.t001 = new Date(queryParams.t001 || 0);
         // object.t002 = new Date(queryParams.t002 || 0);
         // object.t003 = new Date(queryParams.t003 || 0);
@@ -1877,7 +1879,7 @@ export class New {
         // object.t018 = new Date(queryParams.t018 || 0);
         // object.t019 = new Date(queryParams.t019 || 0);
         // object.t020 = new Date(queryParams.t020 || 0);
-        // object.l000 = JSON.parse(queryParams.l000 || '[]');
+        object.l000 = JSON.parse(queryParams.l000 || '[]');
         // object.l001 = JSON.parse(queryParams.l001 || '[]');
         // object.l002 = JSON.parse(queryParams.l002 || '[]');
         // object.l003 = JSON.parse(queryParams.l003 || '[]');
@@ -1898,7 +1900,7 @@ export class New {
         // object.l018 = JSON.parse(queryParams.l018 || '[]');
         // object.l019 = JSON.parse(queryParams.l019 || '[]');
         // object.l020 = JSON.parse(queryParams.l020 || '[]');
-        // object.m000 = JSON.parse(queryParams.m000 || '{}');
+        object.m000 = JSON.parse(queryParams.m000 || '{}');
         // object.m001 = JSON.parse(queryParams.m001 || '{}');
         // object.m002 = JSON.parse(queryParams.m002 || '{}');
         // object.m003 = JSON.parse(queryParams.m003 || '{}');
@@ -1919,7 +1921,7 @@ export class New {
         // object.m018 = JSON.parse(queryParams.m018 || '{}');
         // object.m019 = JSON.parse(queryParams.m019 || '{}');
         // object.m020 = JSON.parse(queryParams.m020 || '{}');
-        // object.c000 = OtherModel.fromDataString(queryParams.c000 || new OtherModel().toDataString());
+        object.c000 = Sub.fromDataString(queryParams.c000 || new Sub().toDataString());
         // object.c001 = OtherModel.fromDataString(queryParams.c001 || new OtherModel().toDataString());
         // object.c002 = OtherModel.fromDataString(queryParams.c002 || new OtherModel().toDataString());
         // object.c003 = OtherModel.fromDataString(queryParams.c003 || new OtherModel().toDataString());
@@ -1940,7 +1942,7 @@ export class New {
         // object.c018 = OtherModel.fromDataString(queryParams.c018 || new OtherModel().toDataString());
         // object.c019 = OtherModel.fromDataString(queryParams.c019 || new OtherModel().toDataString());
         // object.c020 = OtherModel.fromDataString(queryParams.c020 || new OtherModel().toDataString());
-        // object.j000 = (JSON.parse(queryParams.j000 || '[]') || []).map((item: string) => OtherModel.fromDataString(item));
+        object.j000 = (JSON.parse(queryParams.j000 || '[]') || []).map((item: string) => Sub.fromDataString(item));
         // object.j001 = (JSON.parse(queryParams.j001 || '[]') || []).map((item: string) => OtherModel.fromDataString(item));
         // object.j002 = (JSON.parse(queryParams.j002 || '[]') || []).map((item: string) => OtherModel.fromDataString(item));
         // object.j003 = (JSON.parse(queryParams.j003 || '[]') || []).map((item: string) => OtherModel.fromDataString(item));
@@ -1961,27 +1963,27 @@ export class New {
         // object.j018 = (JSON.parse(queryParams.j018 || '[]') || []).map((item: string) => OtherModel.fromDataString(item));
         // object.j019 = (JSON.parse(queryParams.j019 || '[]') || []).map((item: string) => OtherModel.fromDataString(item));
         // object.j020 = (JSON.parse(queryParams.j020 || '[]') || []).map((item: string) => OtherModel.fromDataString(item));
-        // object.e000 = SomeEnumHelper.fromString(queryParams.e000 || SomeEnum.notSelected);
-        // object.e001 = SomeEnumHelper.fromString(queryParams.e001 || SomeEnum.notSelected);
-        // object.e002 = SomeEnumHelper.fromString(queryParams.e002 || SomeEnum.notSelected);
-        // object.e003 = SomeEnumHelper.fromString(queryParams.e003 || SomeEnum.notSelected);
-        // object.e004 = SomeEnumHelper.fromString(queryParams.e004 || SomeEnum.notSelected);
-        // object.e005 = SomeEnumHelper.fromString(queryParams.e005 || SomeEnum.notSelected);
-        // object.e006 = SomeEnumHelper.fromString(queryParams.e006 || SomeEnum.notSelected);
-        // object.e007 = SomeEnumHelper.fromString(queryParams.e007 || SomeEnum.notSelected);
-        // object.e008 = SomeEnumHelper.fromString(queryParams.e008 || SomeEnum.notSelected);
-        // object.e009 = SomeEnumHelper.fromString(queryParams.e009 || SomeEnum.notSelected);
-        // object.e010 = SomeEnumHelper.fromString(queryParams.e010 || SomeEnum.notSelected);
-        // object.e011 = SomeEnumHelper.fromString(queryParams.e011 || SomeEnum.notSelected);
-        // object.e012 = SomeEnumHelper.fromString(queryParams.e012 || SomeEnum.notSelected);
-        // object.e013 = SomeEnumHelper.fromString(queryParams.e013 || SomeEnum.notSelected);
-        // object.e014 = SomeEnumHelper.fromString(queryParams.e014 || SomeEnum.notSelected);
-        // object.e015 = SomeEnumHelper.fromString(queryParams.e015 || SomeEnum.notSelected);
-        // object.e016 = SomeEnumHelper.fromString(queryParams.e016 || SomeEnum.notSelected);
-        // object.e017 = SomeEnumHelper.fromString(queryParams.e017 || SomeEnum.notSelected);
-        // object.e018 = SomeEnumHelper.fromString(queryParams.e018 || SomeEnum.notSelected);
-        // object.e019 = SomeEnumHelper.fromString(queryParams.e019 || SomeEnum.notSelected);
-        // object.e020 = SomeEnumHelper.fromString(queryParams.e020 || SomeEnum.notSelected);
+        object.e000 = TestEnumTestHelper.fromString(queryParams.e000 || TestEnumTest.notSelected);
+        // object.e001 = TestEnumTestHelper.fromString(queryParams.e001 || TestEnumTest.notSelected);
+        // object.e002 = TestEnumTestHelper.fromString(queryParams.e002 || TestEnumTest.notSelected);
+        // object.e003 = TestEnumTestHelper.fromString(queryParams.e003 || TestEnumTest.notSelected);
+        // object.e004 = TestEnumTestHelper.fromString(queryParams.e004 || TestEnumTest.notSelected);
+        // object.e005 = TestEnumTestHelper.fromString(queryParams.e005 || TestEnumTest.notSelected);
+        // object.e006 = TestEnumTestHelper.fromString(queryParams.e006 || TestEnumTest.notSelected);
+        // object.e007 = TestEnumTestHelper.fromString(queryParams.e007 || TestEnumTest.notSelected);
+        // object.e008 = TestEnumTestHelper.fromString(queryParams.e008 || TestEnumTest.notSelected);
+        // object.e009 = TestEnumTestHelper.fromString(queryParams.e009 || TestEnumTest.notSelected);
+        // object.e010 = TestEnumTestHelper.fromString(queryParams.e010 || TestEnumTest.notSelected);
+        // object.e011 = TestEnumTestHelper.fromString(queryParams.e011 || TestEnumTest.notSelected);
+        // object.e012 = TestEnumTestHelper.fromString(queryParams.e012 || TestEnumTest.notSelected);
+        // object.e013 = TestEnumTestHelper.fromString(queryParams.e013 || TestEnumTest.notSelected);
+        // object.e014 = TestEnumTestHelper.fromString(queryParams.e014 || TestEnumTest.notSelected);
+        // object.e015 = TestEnumTestHelper.fromString(queryParams.e015 || TestEnumTest.notSelected);
+        // object.e016 = TestEnumTestHelper.fromString(queryParams.e016 || TestEnumTest.notSelected);
+        // object.e017 = TestEnumTestHelper.fromString(queryParams.e017 || TestEnumTest.notSelected);
+        // object.e018 = TestEnumTestHelper.fromString(queryParams.e018 || TestEnumTest.notSelected);
+        // object.e019 = TestEnumTestHelper.fromString(queryParams.e019 || TestEnumTest.notSelected);
+        // object.e020 = TestEnumTestHelper.fromString(queryParams.e020 || TestEnumTest.notSelected);
         object.fileName = queryParams.fileName || '';
         object.docId = queryParams.docId;
 
@@ -1998,50 +2000,51 @@ export class New {
     }
 }
 
-export class NewPocketBaseCollection {
+export class ExamplePocketBaseCollection {
 
     static _ready = false;
 
     static async getDb(email: string, password: string,pocketHostAddress: string) {
-        if (NewPocketBaseCollection._ready) return;
+        if (ExamplePocketBaseCollection._ready) return;
         // 어드민 로그인 (아이디와 비밀번호 설정 필요)
 
-        const pb = new PocketBase(pocketHostAddress); // go to https://app.pockethost.io/
+        const pb = new PocketBase(pocketHostAddress); // ex) 'https://june.pockethost.io/'
 
+        console.log(pb);
 
         // email,
-        await pb.admins.authWithPassword(email, password); // 어드민 로그인
-        NewPocketBaseCollection._ready = true;
+        await pb.admins.authWithPassword(email,password);
+        ExamplePocketBaseCollection._ready = true;
 
         return pb;
 
     }
 
-    static async get(docId: string,email: string, password: string,pocketHostAddress: string): Promise<New | null> {
+    static async get(docId: string,email: string, password: string,pocketHostAddress: string): Promise<Example | null> {
 
-       let pb = await NewPocketBaseCollection.getDb(email, password,pocketHostAddress);
+       let pb:any = await ExamplePocketBaseCollection.getDb(email, password,pocketHostAddress);
 
         try {
-            const xs = await pb.collection('New').getFirstListItem(`docId="${docId}"`);
+            const xs = await pb.collection('Example').getFirstListItem(`docId="${docId}"`);
 
-            return New.fromMap(xs);
+            return Example.fromMap(xs);
 
 
         } catch (e) {
-            // console.log(e);
+            console.log(e);
             return null;
         }
     }
 
     static async getRow(docId: string,email: string, password: string,pocketHostAddress: string): Promise<any> {
 
-        let pb = await NewPocketBaseCollection.getDb(email, password,pocketHostAddress);
+        let pb:any = await ExamplePocketBaseCollection.getDb(email, password,pocketHostAddress);
 
         try {
-            return await pb.collection('New').getFirstListItem(`docId="${docId}"`);
+            return await pb.collection('Example').getFirstListItem(`docId="${docId}"`);
 
         } catch (e) {
-            // console.log(e);
+            console.log(e);
             return null;
         }
     }
