@@ -22,11 +22,9 @@ requestFireFunctionNew({requestString: (new RequestNew()).toDataString()}).then(
 );
  */
 
-export class RequestNew {
-  constructor() {
-    this.docId = Math.random().toString(36).slice(2, 12);
-  }
 
+
+export class RequestNew {
   s000: string = "";
   // s001: string = "";
   // s002: string = "";
@@ -415,8 +413,6 @@ export class RequestNew {
   // e018: SomeEnum = SomeEnum.notSelected;
   // e019: SomeEnum = SomeEnum.notSelected;
   // e020: SomeEnum = SomeEnum.notSelected;
-
-  docId = "";
 
   toDataString(): string {
     return btoa(Array.from(new TextEncoder().encode(new URLSearchParams({
@@ -808,7 +804,6 @@ export class RequestNew {
       // e018: this.e018,
       // e019: this.e019,
       // e020: this.e020,
-      docId: this.docId,
     }).toString())).map((byte) => String.fromCharCode(byte)).join(""));
   }
 
@@ -1205,7 +1200,6 @@ export class RequestNew {
     // object.e018 = SomeEnumHelper.fromString(queryParams["e018"] || SomeEnum.notSelected);
     // object.e019 = SomeEnumHelper.fromString(queryParams["e019"] || SomeEnum.notSelected);
     // object.e020 = SomeEnumHelper.fromString(queryParams["e020"] || SomeEnum.notSelected);
-    object.docId = queryParams["docId"] || "";
 
     return object;
   }
@@ -1600,7 +1594,6 @@ export class RequestNew {
       // e018: this.e018,
       // e019: this.e019,
       // e020: this.e020,
-      docId: this.docId,
     };
   }
 
@@ -1995,17 +1988,12 @@ export class RequestNew {
     // object.e018 = SomeEnumHelper.fromString(queryParams.e018 || SomeEnum.notSelected);
     // object.e019 = SomeEnumHelper.fromString(queryParams.e019 || SomeEnum.notSelected);
     // object.e020 = SomeEnumHelper.fromString(queryParams.e020 || SomeEnum.notSelected);
-    object.docId = queryParams.docId;
 
     return object;
   }
 }
 
 export class ResponseNew {
-  constructor() {
-    this.docId = Math.random().toString(36).slice(2, 12);
-  }
-
   s000: string = "";
   // s001: string = "";
   // s002: string = "";
@@ -2394,8 +2382,6 @@ export class ResponseNew {
   // e018: SomeEnum = SomeEnum.notSelected;
   // e019: SomeEnum = SomeEnum.notSelected;
   // e020: SomeEnum = SomeEnum.notSelected;
-
-  docId = "";
 
   toDataString(): string {
     return btoa(Array.from(new TextEncoder().encode(new URLSearchParams({
@@ -2787,7 +2773,6 @@ export class ResponseNew {
       // e018: this.e018,
       // e019: this.e019,
       // e020: this.e020,
-      docId: this.docId,
     }).toString())).map((byte) => String.fromCharCode(byte)).join(""));
   }
 
@@ -3184,7 +3169,6 @@ export class ResponseNew {
     // object.e018 = SomeEnumHelper.fromString(queryParams["e018"] || SomeEnum.notSelected);
     // object.e019 = SomeEnumHelper.fromString(queryParams["e019"] || SomeEnum.notSelected);
     // object.e020 = SomeEnumHelper.fromString(queryParams["e020"] || SomeEnum.notSelected);
-    object.docId = queryParams["docId"] || "";
 
     return object;
   }
@@ -3579,7 +3563,6 @@ export class ResponseNew {
       // e018: this.e018,
       // e019: this.e019,
       // e020: this.e020,
-      docId: this.docId,
     };
   }
 
@@ -3974,7 +3957,6 @@ export class ResponseNew {
     // object.e018 = SomeEnumHelper.fromString(queryParams.e018 || SomeEnum.notSelected);
     // object.e019 = SomeEnumHelper.fromString(queryParams.e019 || SomeEnum.notSelected);
     // object.e020 = SomeEnumHelper.fromString(queryParams.e020 || SomeEnum.notSelected);
-    object.docId = queryParams.docId;
 
     return object;
   }
