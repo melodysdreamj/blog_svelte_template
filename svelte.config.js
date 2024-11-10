@@ -7,7 +7,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		env: {
-			dir: process.env // 클라이언트와 서버 모두에서 접근 가능하게 설정
+			dir: '.'
 		}
 	}
 };

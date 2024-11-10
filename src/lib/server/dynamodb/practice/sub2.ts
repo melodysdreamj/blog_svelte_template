@@ -1,10 +1,9 @@
-import {LegoUtil} from "../../../util";
 import {TestEnumTest, TestEnumTestHelper} from "./test_enum";
 
 export class Sub2 {
 
     constructor() {
-        this.docId = LegoUtil.randomString(10);
+        this.docId = Math.random().toString(36).substr(2, 10);
     }
 
     s000: string = "";

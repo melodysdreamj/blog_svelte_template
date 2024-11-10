@@ -1,4 +1,5 @@
 import { DynamoDBClient, CreateTableCommand, ScalarAttributeType, PutItemCommand, GetItemCommand, QueryCommand, DeleteItemCommand, UpdateItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
+import { env } from '$env/dynamic/private';
 
 export class New {
 
@@ -1982,15 +1983,23 @@ export class New {
 
 export class NewDynamoDb {
 
-    static client = new DynamoDBClient({
-        region: (import.meta.env.AWS_REGION || process.env.AWS_REGION) ?? 'ap-northeast-2',
-        credentials: {
-            accessKeyId: (import.meta.env.AWS_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID) ?? '',
-            secretAccessKey: (import.meta.env.AWS_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY) ?? '',
-        },
-    });
+    private static client: DynamoDBClient;
 
-    static async createTable() {
+    static readyDb(platform?: any) {
+        if (this.client) {
+            return this.client;
+        }
+        this.client = new DynamoDBClient({
+            region: env.AWS_REGION || platform?.env?.AWS_REGION || 'ap-northeast-2',
+            credentials: {
+                accessKeyId: env.AWS_ACCESS_KEY_ID || platform?.env?.AWS_ACCESS_KEY_ID || '',
+                secretAccessKey: env.AWS_SECRET_ACCESS_KEY || platform?.env?.AWS_SECRET_ACCESS_KEY || '',
+            },
+        });
+        return this.client;
+    }
+
+    static async createTable(platform?: any) {
         const tableParams = {
             TableName: "New",
             KeySchema: [
@@ -2010,7 +2019,8 @@ export class NewDynamoDb {
         }
     }
 
-    static async upsert(object: New) {
+    static async upsert(object: New, platform?: any) {
+        this.readyDb(platform);
 
         const upsertParams = {
             TableName: "New",
@@ -2411,8 +2421,8 @@ export class NewDynamoDb {
         await NewDynamoDb.client.send(new PutItemCommand(upsertParams));
     }
 
-    static async delete(docId: string): Promise<boolean> {
-
+    static async delete(docId: string, platform?: any): Promise<boolean> {
+        this.readyDb(platform);
 
         try {
             const result = await NewDynamoDb.client.send(new DeleteItemCommand({
@@ -2427,8 +2437,8 @@ export class NewDynamoDb {
         }
     }
 
-    static async get(docId: string): Promise<New | null> {
-
+    static async get(docId: string, platform?: any): Promise<New | null> {
+        this.readyDb(platform);
         const getParams = {
             TableName: "New",
             Key: { docId: { S: docId } }

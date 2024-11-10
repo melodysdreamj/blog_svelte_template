@@ -1,7 +1,7 @@
 import { DynamoDBClient, CreateTableCommand, ScalarAttributeType, PutItemCommand, GetItemCommand, QueryCommand, DeleteItemCommand, UpdateItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
 import { Sub } from "./sub";
 import { TestEnumTest, TestEnumTestHelper } from "./test_enum";
-
+import { env } from '$env/dynamic/private';
 
 export class Practice {
 
@@ -1985,15 +1985,29 @@ export class Practice {
 
 export class PracticeDynamoDb {
 
-    static client = new DynamoDBClient({
-        region: (import.meta.env.AWS_REGION || process.env.AWS_REGION) ?? 'ap-northeast-2',
-        credentials: {
-            accessKeyId: (import.meta.env.AWS_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID) ?? '',
-            secretAccessKey: (import.meta.env.AWS_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY) ?? '',
-        },
-    });
+    private static client: DynamoDBClient;
 
-    static async createTable() {
+    static readyDb(platform?: any) {
+        if (this.client) {
+            return this.client;
+        }
+        this.client = new DynamoDBClient({
+            region: env.AWS_REGION || platform?.env?.AWS_REGION || '',
+            credentials: {
+                accessKeyId: env.AWS_ACCESS_KEY_ID || platform?.env?.AWS_ACCESS_KEY_ID || '',
+                secretAccessKey: env.AWS_SECRET_ACCESS_KEY || platform?.env?.AWS_SECRET_ACCESS_KEY || '',
+            },
+        });
+
+        console.log("AWS_REGION:", env.AWS_REGION || platform?.env?.AWS_REGION || '');
+        console.log("AWS_ACCESS_KEY_ID:", env.AWS_ACCESS_KEY_ID || platform?.env?.AWS_ACCESS_KEY_ID || '');
+        console.log("AWS_SECRET_ACCESS_KEY:", env.AWS_SECRET_ACCESS_KEY || platform?.env?.AWS_SECRET_ACCESS_KEY || '');
+
+        return this.client;
+    }
+
+    static async createTable(platform?: any) {
+        this.readyDb(platform);
         const tableParams = {
             TableName: "Practice",
             KeySchema: [
@@ -2015,8 +2029,8 @@ export class PracticeDynamoDb {
         }
     }
 
-    static async upsert(object: Practice) {
-
+    static async upsert(object: Practice, platform?: any) {
+        this.readyDb(platform);
         const upsertParams = {
             TableName: "Practice",
             Item: {
@@ -2416,8 +2430,8 @@ export class PracticeDynamoDb {
         await PracticeDynamoDb.client.send(new PutItemCommand(upsertParams));
     }
 
-    static async delete(docId: string): Promise<boolean> {
-
+    static async delete(docId: string, platform?: any): Promise<boolean> {
+        this.readyDb(platform);
 
         try {
             const result = await PracticeDynamoDb.client.send(new DeleteItemCommand({
@@ -2432,7 +2446,8 @@ export class PracticeDynamoDb {
         }
     }
 
-    static async get(docId: string): Promise<Practice | null> {
+    static async get(docId: string, platform?: any): Promise<Practice | null> {
+        this.readyDb(platform);
 
         const getParams = {
             TableName: "Practice",
