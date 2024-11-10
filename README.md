@@ -78,3 +78,14 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 ```
+
+
+## dynamoDB 사용하기위해서 
+1. .env 파일에 다음 내용 추가하기
+```text
+AWS_REGION=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+```
+
+2. 해당 값을 클라우드플레어 콘솔에서 확인해서 넣어준다.

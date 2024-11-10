@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@aws-sdk/client-dynamodb": "^3.687.0",
 		"@tailwindcss/typography": "^0.5.15",
 		"d3": "^7.9.0",
 		"dexie": "^4.0.8",
