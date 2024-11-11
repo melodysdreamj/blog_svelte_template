@@ -89,3 +89,33 @@ AWS_SECRET_ACCESS_KEY=
 ```
 
 2. 해당 값을 클라우드플레어 콘솔에서 확인해서 넣어준다.
+
+
+
+## delete cloudflare edge cache
+1. .env 파일에 다음 내용 추가하기
+```text
+CF_ZONE_ID=
+CF_API_TOKEN=
+```
+### 1. Finding Your Zone ID
+
+The **Zone ID** is a unique identifier used by Cloudflare to manage each site (domain) individually. Follow these steps to find your Zone ID:
+
+1. Log in to your Cloudflare account.
+2. From the dashboard, select the domain you want to manage.
+3. On the **Overview** page of your site, locate the Zone ID. It is usually displayed toward the bottom of the page as a unique identifier.
+
+### 2. Generating an API Token
+
+An **API Token** allows you to authenticate with the Cloudflare API, with customizable permissions for security and access control.
+
+1. Log in to your Cloudflare account.
+2. Click on the profile icon in the top-right corner and select **My Profile**.
+3. Go to the **API Tokens** tab.
+4. Click on **Create Token** to generate a new API Token.
+5. You can select a pre-built template, such as **Edit Zone DNS** or **Cache Purge**, or create a custom token with specific permissions as outlined below:
+   - **Permissions**: `Zone - Cache Purge - Edit`
+   - **Zone Resources**: Select the necessary domain(s) or choose **All Zones** if required.
+6. After configuring the token, click **Continue to summary**, then select **Create Token**.
+7. Copy the token immediately and store it securely, as it will only be displayed once for security reasons.
