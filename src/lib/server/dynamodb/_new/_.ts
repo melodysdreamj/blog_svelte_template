@@ -2445,7 +2445,10 @@ export class NewDynamoDb {
         };
 
         const result = await NewDynamoDb.client.send(new GetItemCommand(getParams));
-        return this.fromMap(result.Item);
+        if (result.Item) {
+            return this.fromMap(result.Item);
+        }
+        return null;
     }
 
     static fromMap(queryParams: any): New {
