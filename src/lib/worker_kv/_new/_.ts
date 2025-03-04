@@ -1884,10 +1884,10 @@ export class New {
 
 
 export class NewWorkerKV {
-	static async get(app: any, docId: string): Promise<New | null> {
+	static async get(platform: any, docId: string): Promise<New | null> {
 		try {
-			const ref = app.platform.env.New;
-			const dataString = await ref.get(docId);
+			const dataString = await platform.env.SentencePromptExample.get(docId);
+
 
 			return New.fromDataString(dataString);
 		} catch (e) {
