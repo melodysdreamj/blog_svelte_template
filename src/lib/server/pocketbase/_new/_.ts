@@ -1,10 +1,9 @@
 import PocketBase from "pocketbase";
-import Dexie from "dexie";
 // PocketBase 클라이언트 초기화
 
 export class New {
   constructor() {
-    this.docId = Math.random().toString(36).substr(2, 10);
+    this.docId = New.randomString(10);
   }
 
   // s000: string = "";
@@ -17,8 +16,9 @@ export class New {
   // c000: OtherModel = new OtherModel();
   // j000 : OtherModel[] = [];
   // e000: SomeEnum = SomeEnum.notSelected;
+  fileName: string = "";
 
-  docId = "";
+  docId: string = "";
 
   toDataString(): string {
     return btoa(
@@ -35,6 +35,7 @@ export class New {
             // c000: this.c000.toDataString(),
             // j000: JSON.stringify(this.j000.map((model: OtherModel) => model.toDataString())),
             // e000: this.e000,
+            fileName: this.fileName,
             docId: this.docId,
           }).toString()
         )
@@ -61,6 +62,7 @@ export class New {
     // object.c000 = OtherModel.fromDataString(queryParams["c000"] || new OtherModel().toDataString());
     // object.j000 = (JSON.parse(queryParams["j000"] || "[]") || []).map((item: string) => OtherModel.fromDataString(item));
     // object.e000 = SomeEnumHelper.fromString(queryParams["e000"] || SomeEnum.notSelected);
+    object.fileName = queryParams["fileName"] || "";
     object.docId = queryParams["docId"] || "";
 
     return object;
@@ -78,6 +80,7 @@ export class New {
       // c000: this.c000.toDataString(),
       // j000: JSON.stringify(this.j000.map((model: OtherModel) => model.toDataString())),
       // e000: this.e000,
+      fileName: this.fileName,
       docId: this.docId,
     };
   }
@@ -95,82 +98,84 @@ export class New {
     // object.c000 = OtherModel.fromDataString(queryParams.c000 || new OtherModel().toDataString());
     // object.j000 = (JSON.parse(queryParams.j000 || '[]') || []).map((item: string) => OtherModel.fromDataString(item));
     // object.e000 = SomeEnumHelper.fromString(queryParams.e000 || SomeEnum.notSelected);
+    object.fileName = queryParams.fileName || "";
     object.docId = queryParams.docId;
 
     return object;
   }
+
+  static randomString(length: number): string {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return result;
+  }
 }
 
-export class NewDexie {
-  static db: Dexie;
+export class NewPocketBaseCollection {
+  static async getDb(
+    email: string,
+    password: string,
+    pocketHostAddress: string
+  ) {
+    // if (NewPocketBaseCollection._ready) return;
+    // 어드민 로그인 (아이디와 비밀번호 설정 필요)
 
-  static async insert(object: New) {
-    await NewDexie.db.table("New").add(object.toMap());
+    let pb: any = new PocketBase(pocketHostAddress); // go to https://app.pockethost.io/
+
+    // email,
+    await pb.admins.authWithPassword(email, password); // 어드민 로그인
+    // NewPocketBaseCollection._ready = true;
+
+    return pb;
   }
 
-  static async insertBulk(objects: New[]) {
-    await NewDexie.db.transaction("rw", NewDexie.db.table("New"), async () => {
-      for (const object of objects) {
-        await NewDexie.insert(object);
-      }
-    });
-  }
+  static async get(
+    docId: string,
+    email: string,
+    password: string,
+    pocketHostAddress: string
+  ): Promise<New | null> {
+    let pb: any = await NewPocketBaseCollection.getDb(
+      email,
+      password,
+      pocketHostAddress
+    );
 
-  static async update(object: New) {
-    await NewDexie.db.table("New").update(object.docId, object.toMap());
-  }
+    try {
+      const xs = await pb
+        .collection("New")
+        .getFirstListItem(`docId="${docId}"`);
 
-  static async upsert(object: New) {
-    if ((await NewDexie.get(object.docId)) === null) {
-      await NewDexie.insert(object);
-    } else {
-      await NewDexie.update(object);
+      return New.fromMap(xs);
+    } catch (e) {
+      // console.log(e);
+      return null;
     }
   }
 
-  static async delete(docId: string) {
-    await NewDexie.db.table("New").delete(docId);
+  static async getRow(
+    docId: string,
+    email: string,
+    password: string,
+    pocketHostAddress: string
+  ): Promise<any> {
+    let pb = await NewPocketBaseCollection.getDb(
+      email,
+      password,
+      pocketHostAddress
+    );
+
+    try {
+      return await pb.collection("New").getFirstListItem(`docId="${docId}"`);
+    } catch (e) {
+      // console.log(e);
+      return null;
+    }
   }
-
-  static async get(docId: string): Promise<New | null> {
-    const row = await NewDexie.db.table("New").get(docId);
-    return row ? New.fromMap(row) : null;
-  }
-
-  static async getAll(): Promise<New[]> {
-    const rows = await NewDexie.db.table("New").toArray();
-    return rows.map((row) => New.fromMap(row));
-  }
-
-  // static async getByI000(i000: number): Promise<New[]> {
-  //     const rows = await NewDexie.db.table('New').where('i000').equals(i000).toArray();
-  //     return rows.map(row => New.fromMap(row));
-  // }
-
-  static async resetTable() {
-    await NewDexie.db.table("New").clear();
-  }
-
-  static async ready() {
-    if (NewDexie.isReady) return;
-
-    NewDexie.db = new Dexie("New");
-    NewDexie.db.version(1).stores({
-      New: "docId",
-      //  + `,s000`
-      //  + `,i000`
-      //  + `,b000`
-      //  + `,r000`
-      //  + `,t000`
-      //  + `,l000`
-      //  + `,m000`
-      //  + `,c000`
-      //  + `,j000`
-      //  + `,e000`
-    });
-
-    NewDexie.isReady = true;
-  }
-
-  static isReady = false;
 }
