@@ -39,6 +39,7 @@
 		"d3": "^7.9.0",
 		"dexie": "^4.0.8",
 		"firebase": "^11.7.3",
+		"jose": "^6.0.11",
 		"jsonwebtoken": "^9.0.2",
 		"pocketbase": "^0.26.0"
 	}
