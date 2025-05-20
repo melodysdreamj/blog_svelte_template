@@ -16,6 +16,7 @@
 		"@sveltejs/kit": "^2.21.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@types/cookie": "^1.0.0",
+		"@types/jsonwebtoken": "^9.0.9",
 		"@vite-pwa/sveltekit": "^1.0.0",
 		"autoprefixer": "^10.4.21",
 		"globals": "^16.1.0",
@@ -38,6 +39,7 @@
 		"d3": "^7.9.0",
 		"dexie": "^4.0.8",
 		"firebase": "^11.7.3",
+		"jsonwebtoken": "^9.0.2",
 		"pocketbase": "^0.26.0"
 	}
 }

@@ -13,6 +13,7 @@
   let localUserInfo: User | null = null;
   let idToken: string | null = null;
   let message: string = "";
+  let serverVerificationResult: any = null;
 
   currentUser.subscribe((value: User | null) => {
     localUserInfo = value;
@@ -77,6 +78,34 @@
     } else {
       idToken = null;
       message = "사용자 정보가 없어 ID 토큰을 요청할 수 없습니다.";
+    }
+  }
+
+  async function handleVerifyTokenOnServer() {
+    message = "ID 토큰 서버 검증 요청 중...";
+    serverVerificationResult = null;
+    if (!idToken) {
+      message = "먼저 ID 토큰을 요청해주세요.";
+      return;
+    }
+    try {
+      const response = await fetch("/api/firebase_auth_token_verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idToken }),
+      });
+      serverVerificationResult = await response.json();
+      if (response.ok && serverVerificationResult.success) {
+        message = "서버에서 ID 토큰 검증 성공!";
+      } else {
+        message = `서버에서 ID 토큰 검증 실패: ${serverVerificationResult.error || response.statusText}`;
+      }
+    } catch (e) {
+      serverVerificationResult = { error: (e as Error).message };
+      message = `서버 검증 API 호출 중 오류: ${(e as Error).message}`;
+      console.error("[Console] Server token verification API error:", e);
     }
   }
 
@@ -181,6 +210,12 @@
       >ID 토큰 요청</button
     >
     <button
+      on:click={handleVerifyTokenOnServer}
+      disabled={!idToken}
+      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-1 disabled:opacity-50"
+      >ID 토큰 서버 검증</button
+    >
+    <button
       on:click={handleLogout}
       disabled={!loggedInStatus}
       class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-1 disabled:opacity-50"
@@ -217,6 +252,13 @@
     <div class="token-info">
       <h3>ID 토큰:</h3>
       <pre>{idToken}</pre>
+    </div>
+  {/if}
+
+  {#if serverVerificationResult}
+    <div class="token-info">
+      <h3>서버 검증 결과:</h3>
+      <pre>{JSON.stringify(serverVerificationResult, null, 2)}</pre>
     </div>
   {/if}
 </div>
