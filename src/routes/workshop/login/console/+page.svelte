@@ -6,7 +6,7 @@
     fetchIdToken,
     logout,
     currentUser,
-  } from "$lib/login/firebase_google_login";
+  } from "$lib/client/login/firebase_google_login";
   import type { User } from "firebase/auth";
 
   let loggedInStatus: boolean | null = null;

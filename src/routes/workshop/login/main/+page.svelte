@@ -19,14 +19,14 @@
     handleGoogleSignInWithCredentialToken, // 함수
     logout, // 함수
     GOOGLE_CLIENT_ID, // 상수
-  } from "$lib/login/firebase_google_login";
+  } from "$lib/client/login/firebase_google_login";
   import type { User } from "firebase/auth"; // User 타입은 여전히 필요할 수 있음
 
   // 로컬 error 변수는 스토어의 authErrorStore를 반영 (UI 표시용)
   let localError: string | null = null;
   // authErrorStore 구독 콜백의 value 타입 명시 (이미 User | null로 되어 있을 것임)
   const unsubscribeError = authErrorStore.subscribe(
-    (value) => (localError = value)
+    (value: string | null) => (localError = value)
   );
 
   let gisScriptLoaded = false;
@@ -263,7 +263,7 @@
       {:else if !$authLoading}
         <div class="relative mb-6">
           <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-gray-300" />
+            <div class="w-full border-t border-gray-300"></div>
           </div>
           <div class="relative flex justify-center text-sm">
             <span class="px-2 bg-white text-gray-500"
@@ -282,8 +282,4 @@
   </div>
 </div>
 
-<style>
-  body {
-    font-family: "Inter", "Noto Sans KR", sans-serif;
-  }
-</style>
+
